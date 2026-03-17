@@ -1,0 +1,481 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Outfit:wght@300;400;500&display=swap');
+
+/* ─── Navbar ─────────────────────────────────────────────── */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(17, 11, 4, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(232, 160, 69, 0.08);
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+.navbar--scrolled {
+    background: rgba(17, 11, 4, 0.95);
+    border-bottom-color: rgba(232, 160, 69, 0.15);
+}
+
+.navbar-top-line {
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, rgba(232,160,69,0.5) 30%, rgba(232,160,69,0.5) 70%, transparent);
+}
+
+/* ─── Container ──────────────────────────────────────────── */
+.navbar-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 2rem;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    min-width: 0;
+}
+
+/* ─── Logo ───────────────────────────────────────────────── */
+.navbar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.navbar-logo-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 1px solid rgba(232, 160, 69, 0.3);
+    background: rgba(232, 160, 69, 0.06);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #e8a045;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.navbar-logo:hover .navbar-logo-icon {
+    border-color: rgba(232, 160, 69, 0.6);
+    background: rgba(232, 160, 69, 0.12);
+}
+
+.navbar-logo-text-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 5px;
+}
+
+.navbar-logo-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 600;
+    color: #f5ede0;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+}
+
+.navbar-logo:hover .navbar-logo-name {
+    color: #f0c070;
+}
+
+.navbar-logo-amp {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    font-weight: 300;
+    color: #e8a045;
+}
+
+/* ─── Desktop Nav ────────────────────────────────────────── */
+.navbar-nav {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    flex: 1;
+    justify-content: center;
+    min-width: 0;
+    flex-wrap: wrap;
+}
+
+.navbar-nav-link {
+    position: relative;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #7a6550;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    transition: color 0.2s ease;
+    letter-spacing: 0.01em;
+}
+
+.navbar-nav-link:hover {
+    color: #f0c070;
+}
+
+.navbar-nav-link--active {
+    color: #e8a045;
+}
+
+.navbar-nav-underline {
+    position: absolute;
+    bottom: 0;
+    left: 12px;
+    right: 12px;
+    height: 1px;
+    background: #e8a045;
+    border-radius: 1px;
+}
+
+/* ─── Actions ────────────────────────────────────────────── */
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.navbar-icon-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 0.5px solid rgba(232, 160, 69, 0.15);
+    background: transparent;
+    color: #7a6550;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.navbar-icon-btn:hover {
+    color: #e8a045;
+    border-color: rgba(232, 160, 69, 0.4);
+    background: rgba(232, 160, 69, 0.06);
+}
+
+/* ─── Cart ───────────────────────────────────────────────── */
+.navbar-cart-btn {
+    position: relative;
+}
+
+.navbar-cart-badge {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #e8a045;
+    color: #110b04;
+    font-family: 'Outfit', sans-serif;
+    font-size: 9px;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid #110b04;
+}
+
+/* ─── Login btn ──────────────────────────────────────────── */
+.navbar-login-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: #e8a045;
+    text-decoration: none;
+    padding: 7px 16px;
+    border-radius: 100px;
+    border: 0.5px solid rgba(232, 160, 69, 0.35);
+    background: rgba(232, 160, 69, 0.06);
+    transition: all 0.2s ease;
+    letter-spacing: 0.04em;
+}
+
+.navbar-login-btn:hover {
+    background: rgba(232, 160, 69, 0.14);
+    border-color: rgba(232, 160, 69, 0.6);
+    color: #f0c070;
+}
+
+/* ─── User avatar ────────────────────────────────────────── */
+.navbar-user {
+    position: relative;
+}
+
+.navbar-user-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.navbar-user-avatar {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(232, 160, 69, 0.12);
+    border: 1px solid rgba(232, 160, 69, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #e8a045;
+    transition: all 0.2s ease;
+}
+
+.navbar-user-btn:hover .navbar-user-avatar {
+    border-color: rgba(232, 160, 69, 0.6);
+    background: rgba(232, 160, 69, 0.18);
+}
+
+/* ─── User dropdown ──────────────────────────────────────── */
+.navbar-user-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 210px;
+    background: #1a1008;
+    border: 0.5px solid rgba(232, 160, 69, 0.2);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+}
+
+.navbar-user-info {
+    padding: 14px 16px;
+}
+
+.navbar-user-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: #f5ede0;
+    margin: 0 0 2px;
+}
+
+.navbar-user-email {
+    font-family: 'Outfit', sans-serif;
+    font-size: 11px;
+    font-weight: 300;
+    color: #7a6550;
+    margin: 0;
+}
+
+.navbar-user-menu-divider {
+    height: 0.5px;
+    background: rgba(232, 160, 69, 0.12);
+    margin: 0;
+}
+
+.navbar-user-link {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 16px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #7a6550;
+    text-decoration: none;
+    transition: all 0.15s ease;
+}
+
+.navbar-user-link:hover {
+    color: #f0c070;
+    background: rgba(232, 160, 69, 0.06);
+}
+
+.navbar-user-link i {
+    font-size: 13px;
+    color: #e8a045;
+    opacity: 0.7;
+}
+
+.navbar-logout-btn {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 10px 16px;
+    width: 100%;
+    background: none;
+    border: none;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #7a6550;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    text-align: left;
+}
+
+.navbar-logout-btn:hover {
+    color: #f87171;
+    background: rgba(248, 113, 113, 0.06);
+}
+
+.navbar-logout-btn i {
+    font-size: 13px;
+    color: #f87171;
+    opacity: 0.7;
+}
+
+/* ─── Hamburger ──────────────────────────────────────────── */
+.navbar-mobile-toggle {
+    display: none;
+    background: none;
+    border: 0.5px solid rgba(232, 160, 69, 0.2);
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 0;
+}
+
+.navbar-hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    width: 16px;
+}
+
+.navbar-hamburger span {
+    display: block;
+    height: 1px;
+    background: #e8a045;
+    border-radius: 1px;
+    transition: all 0.25s ease;
+    transform-origin: center;
+}
+
+.navbar-hamburger--open span:nth-child(1) {
+    transform: translateY(5px) rotate(45deg);
+}
+
+.navbar-hamburger--open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+
+.navbar-hamburger--open span:nth-child(3) {
+    transform: translateY(-5px) rotate(-45deg);
+}
+
+/* ─── Mobile nav ─────────────────────────────────────────── */
+.navbar-mobile-nav {
+    overflow: hidden;
+    border-top: 0.5px solid rgba(232, 160, 69, 0.1);
+}
+
+.navbar-mobile-inner {
+    padding: 12px 1.5rem 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.navbar-mobile-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #7a6550;
+    text-decoration: none;
+    padding: 10px 8px;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.navbar-mobile-link:hover,
+.navbar-mobile-link--active {
+    color: #f0c070;
+    background: rgba(232, 160, 69, 0.06);
+}
+
+.navbar-mobile-link-dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #e8a045;
+    opacity: 0.5;
+    flex-shrink: 0;
+}
+
+.navbar-mobile-link--active .navbar-mobile-link-dot {
+    opacity: 1;
+}
+
+.navbar-mobile-login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    padding: 10px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: #e8a045;
+    text-decoration: none;
+    border: 0.5px solid rgba(232, 160, 69, 0.3);
+    border-radius: 100px;
+    background: rgba(232, 160, 69, 0.06);
+    transition: all 0.2s ease;
+}
+
+.navbar-mobile-login:hover {
+    background: rgba(232, 160, 69, 0.12);
+}
+
+/* ─── Responsive ─────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .navbar-nav {
+        display: none;
+    }
+
+    .navbar-mobile-toggle {
+        display: flex;
+    }
+
+    .navbar-login-btn span {
+        display: none;
+    }
+}
+
+@media (max-width: 1024px) {
+    .navbar-container {
+        padding: 0 1.5rem;
+        gap: 1.25rem;
+    }
+
+    .navbar-nav-link {
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-container {
+        padding: 0 1rem;
+        gap: 1rem;
+    }
+
+    .navbar-logo-name {
+        font-size: 15px;
+    }
+}

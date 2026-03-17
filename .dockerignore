@@ -1,0 +1,32 @@
+# Git
+.git
+.gitignore
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Node dependencies & build output
+**/node_modules
+**/dist
+**/dist-ssr
+**/.vite
+**/.cache
+
+# Logs
+**/logs
+**/*.log
+
+# Tests / coverage
+**/coverage
+
+# IDE / OS
+.vscode
+.idea
+.DS_Store
+Thumbs.db
+
+# Misc
+**/*.swp
+**/*.tmp

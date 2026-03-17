@@ -1,0 +1,49 @@
+# General
+.DS_Store
+Thumbs.db
+
+# IDEs / Editors
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# OS / tooling
+*.swp
+*.tmp
+
+# Node (frontend + backend)
+**/node_modules/
+**/dist/
+**/dist-ssr/
+**/.vite/
+**/.cache/
+
+# Vite / TS build artifacts
+**/*.local
+**/tsconfig.tsbuildinfo
+
+# Coverage
+**/coverage/
+
+# Backend runtime uploads/cache (if present)
+backend/uploads/
+backend/tmp/
+backend/.cache/
+
+# Docker
+*.pid
