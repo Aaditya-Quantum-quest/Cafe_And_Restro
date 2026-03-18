@@ -1,87 +1,8 @@
-type TagVariant = "hot" | "new" | "fresh" | "special" | "promo";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { MENU_SHOWCASE_CARDS, type MenuShowcaseCard } from "../data/menuShowcaseData";
 
-interface MenuItem {
-  id: string;
-  title: string[];
-  sub: string;
-  price: string;
-  oldPrice?: string;
-  discount?: string;
-  tag: { label: string; variant: TagVariant };
-  image: string;
-  glowColor: string;
-  rating?: number;
-}
-
-const MENU_ITEMS: MenuItem[] = [
-  {
-    id: "pizza",
-    title: ["Pizza", "Special"],
-    sub: "Stone-baked · Extra cheese · Best seller",
-    price: "₹349",
-    oldPrice: "₹449",
-    discount: "20%",
-    tag: { label: "Most ordered", variant: "hot" },
-    image: "https://images.unsplash.com/photo-1513104890138-7c749659a591?w=600&q=80&fit=crop",
-    glowColor: "#e8410a",
-    rating: 4.5,
-  },
-  {
-    id: "mojito",
-    title: ["Mojito", "Fresh"],
-    sub: "Mint · Lime · Soda · Super refreshing",
-    price: "₹149",
-    tag: { label: "Fresh squeeze", variant: "fresh" },
-    image: "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?w=600&q=80&fit=crop",
-    glowColor: "#3aaa66",
-  },
-  {
-    id: "burger",
-    title: ["Burgers", "Juicy"],
-    sub: "Double patty · House sauce · Crowd favorite",
-    price: "₹299",
-    tag: { label: "New drop", variant: "new" },
-    image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600&q=80&fit=crop",
-    glowColor: "#f7a234",
-  },
-  {
-    id: "sandwich",
-    title: ["Sandwiches", "Crispy"],
-    sub: "Grilled · Loaded fillings · Quick bite",
-    price: "₹199",
-    tag: { label: "Chef's pick", variant: "special" },
-    image: "https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=600&q=80&fit=crop",
-    glowColor: "#e8b06a",
-  },
-  {
-    id: "noodles",
-    title: ["Noodles", "Spicy"],
-    sub: "Wok-tossed · Veg/Chicken · Street style",
-    price: "₹229",
-    oldPrice: "₹279",
-    tag: { label: "Limited time", variant: "promo" },
-    image: "https://images.unsplash.com/photo-1604909053269-3e49f9f78a5e?w=600&q=80&fit=crop",
-    glowColor: "#e8410a",
-  },
-  {
-    id: "momos",
-    title: ["Momos", "Steamed"],
-    sub: "Spicy chutney · Soft wrappers · Best snack",
-    price: "₹179",
-    tag: { label: "Chef's pick", variant: "special" },
-    image: "https://images.unsplash.com/photo-1660409771867-fd7d0a8f41f8?w=600&q=80&fit=crop",
-    glowColor: "#e8b06a",
-  },
-  {
-    id: "desserts",
-    title: ["Desserts", "Sweet"],
-    sub: "Chocolate · Creamy · Must try",
-    price: "₹199",
-    tag: { label: "New drop", variant: "new" },
-    image: "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=600&q=80&fit=crop",
-    glowColor: "#f7a234",
-  },
-];
+type MenuItem = MenuShowcaseCard;
 
 const globalCSS = `
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300;1,600&family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap');
@@ -99,24 +20,24 @@ const globalCSS = `
     background: var(--bg);
     font-family: 'Outfit', sans-serif;
     color: var(--text);
-    padding: 48px 24px;
+    padding: 54px 28px;
     min-height: 100vh;
   }
 
   /* ── Header ── */
   .ms-header {
     text-align: center;
-    margin-bottom: 48px;
+    margin-bottom: 54px;
     position: relative;
   }
   .ms-eyebrow {
     font-family: 'Outfit', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 400;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: #c87d3a;
-    margin-bottom: 12px;
+    margin-bottom: 14px;
     display: block;
   }
   .ms-title {
@@ -138,11 +59,11 @@ const globalCSS = `
     align-items: center;
     justify-content: center;
     gap: 10px;
-    margin: 18px auto 0;
+    margin: 20px auto 0;
     width: fit-content;
   }
   .ms-header-line {
-    width: 52px;
+    width: 58px;
     height: 0.5px;
     background: rgba(232,160,69,0.3);
   }
@@ -159,15 +80,15 @@ const globalCSS = `
   .ms-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 12px;
-    max-width: 1200px;
+    gap: 14px;
+    max-width: 1320px;
     margin: 0 auto;
   }
 
   /* ── Card — all equal, image fills background ── */
   .ms-card {
     position: relative;
-    height: 300px;
+    height: 330px;
     border-radius: 4px;
     overflow: hidden;
     cursor: pointer;
@@ -188,10 +109,8 @@ const globalCSS = `
     object-fit: cover;
     object-position: center;
     z-index: 0;
-    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .ms-card:hover .ms-food-img {
-    transform: scale(1.06);
+    will-change: transform, opacity;
+    transform: scale(1);
   }
 
   /* Dark gradient overlay — stronger at bottom-left where text lives */
@@ -252,7 +171,7 @@ const globalCSS = `
     position: absolute;
     inset: 0;
     z-index: 3;
-    padding: 20px 24px 22px;
+    padding: 22px 28px 24px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -263,13 +182,13 @@ const globalCSS = `
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    font-size: 9px;
+    font-size: 10px;
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    padding: 4px 10px;
+    padding: 5px 11px;
     border-radius: 2px;
-    margin-bottom: 10px;
+    margin-bottom: 11px;
     width: fit-content;
   }
   .ms-tag--hot     { background: #e8410a18; color: #e8410a; border: 1px solid #e8410a40; }
@@ -281,7 +200,7 @@ const globalCSS = `
   /* Stars */
   .ms-stars { display: flex; gap: 2px; margin-bottom: 8px; }
   .ms-star {
-    width: 9px; height: 9px;
+    width: 10px; height: 10px;
     background: var(--accent2);
     clip-path: polygon(50% 0%,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);
   }
@@ -299,11 +218,11 @@ const globalCSS = `
 
   /* Subtitle */
   .ms-card-sub {
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 300;
     color: rgba(240,232,220,0.55);
     line-height: 1.45;
-    margin-bottom: 16px;
+    margin-bottom: 18px;
   }
 
   /* Footer */
@@ -314,13 +233,13 @@ const globalCSS = `
   }
   .ms-price {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 26px;
+    font-size: 29px;
     letter-spacing: 0.06em;
     color: var(--text);
     line-height: 1;
   }
   .ms-old-price {
-    font-size: 12px;
+    font-size: 13px;
     color: var(--muted);
     text-decoration: line-through;
     margin-left: 4px;
@@ -333,11 +252,11 @@ const globalCSS = `
     background: var(--accent);
     color: #fff;
     font-family: 'Outfit', sans-serif;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    padding: 9px 16px;
+    padding: 10px 18px;
     border: none;
     border-radius: 2px;
     cursor: pointer;
@@ -357,13 +276,13 @@ const globalCSS = `
     display: flex;
     align-items: center;
     gap: 20px;
-    max-width: 1200px;
-    margin: 48px auto 0;
-    padding-top: 20px;
+    max-width: 1320px;
+    margin: 54px auto 0;
+    padding-top: 22px;
     border-top: 1px solid var(--border);
   }
   .ms-divider-text {
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--muted);
@@ -378,11 +297,11 @@ const globalCSS = `
     border: 1px solid #2e2010;
     color: #7a6048;
     font-family: 'Outfit', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.14em;
     text-transform: uppercase;
-    padding: 11px 22px;
+    padding: 12px 24px;
     cursor: pointer;
     border-radius: 2px;
     transition: border-color 0.2s, color 0.2s;
@@ -395,12 +314,12 @@ const globalCSS = `
 
   @media (max-width: 900px) {
     .ms-grid { grid-template-columns: repeat(2, 1fr); }
-    .ms-card { height: 260px; }
+    .ms-card { height: 286px; }
   }
   @media (max-width: 520px) {
-    .ms-grid { grid-template-columns: 1fr; gap: 10px; }
-    .ms-card { height: 240px; }
-    .ms-body { padding: 32px 16px; }
+    .ms-grid { grid-template-columns: 1fr; gap: 12px; }
+    .ms-card { height: 264px; }
+    .ms-body { padding: 36px 18px; }
   }
 `;
 
@@ -431,11 +350,45 @@ const Stars = ({ rating }: { rating: number }) => {
   );
 };
 
-const ShowcaseCard = ({ item }: { item: MenuItem }) => {
+const ShowcaseCard = ({ item, index }: { item: MenuItem; index: number }) => {
   const isGhost = item.id === "pasta";
+  const [activeImage, setActiveImage] = useState(0);
+
+  useEffect(() => {
+    let mounted = true;
+    let timeoutId: number | undefined;
+
+    const tick = () => {
+      timeoutId = window.setTimeout(() => {
+        if (!mounted) return;
+        setActiveImage(prev => (prev + 1) % item.images.length);
+        tick();
+      }, 4500);
+    };
+
+    timeoutId = window.setTimeout(tick, index * 250);
+
+    return () => {
+      mounted = false;
+      if (timeoutId !== undefined) window.clearTimeout(timeoutId);
+    };
+  }, [index, item.images.length]);
+
   return (
     <div className="ms-card">
-      <img className="ms-food-img" src={item.image} alt={item.title.join(" ")} loading="lazy" />
+      <AnimatePresence>
+        <motion.img
+          key={`${item.id}-${activeImage}`}
+          className="ms-food-img"
+          src={item.images[activeImage]}
+          alt={item.title.join(" ")}
+          loading="lazy"
+          initial={{ opacity: 0, scale: 1, filter: 'blur(2px)' }}
+          animate={{ opacity: 1, scale: 1.12, filter: 'blur(0px)' }}
+          exit={{ opacity: 0, scale: 1.12, filter: 'blur(2px)' }}
+          transition={{ duration: 4.5, ease: 'easeOut' }}
+        />
+      </AnimatePresence>
       <div className="ms-overlay" />
       <div className="ms-line" />
 
@@ -490,9 +443,9 @@ export default function MenuShowcase() {
         </header>
 
         <div className="ms-grid">
-          {MENU_ITEMS.map((item, i) => (
+          {MENU_SHOWCASE_CARDS.map((item, i) => (
             <div key={item.id} className="ms-anim" style={{ animationDelay: `${0.1 + i * 0.08}s` }}>
-              <ShowcaseCard item={item} />
+              <ShowcaseCard item={item} index={i} />
             </div>
           ))}
         </div>

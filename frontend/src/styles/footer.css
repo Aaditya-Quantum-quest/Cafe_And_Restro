@@ -107,7 +107,7 @@
 
 .footer-logo-text {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 18px;
+    font-size: 19px;
     font-weight: 600;
     color: #f5ede0;
     letter-spacing: 0.02em;
@@ -115,7 +115,7 @@
 
 .footer-logo-amp {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 14px;
+    font-size: 15px;
     font-style: italic;
     font-weight: 300;
     color: #e8a045;
@@ -124,7 +124,7 @@
 /* ─── Desc ───────────────────────────────────────────────── */
 .footer-desc {
     font-family: 'Outfit', sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 300;
     color: #7a6550;
     line-height: 1.8;
@@ -174,7 +174,7 @@
 /* ─── Section titles ─────────────────────────────────────── */
 .footer-section-title {
     font-family: 'Outfit', sans-serif;
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
@@ -207,7 +207,7 @@
 
 .footer-link {
     font-family: 'Outfit', sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 300;
     color: #7a6550;
     text-decoration: none;
@@ -247,7 +247,7 @@
     align-items: flex-start;
     gap: 8px;
     font-family: 'Outfit', sans-serif;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 300;
     color: #7a6550;
     line-height: 1.5;
@@ -295,7 +295,7 @@
 .footer-copyright,
 .footer-crafted {
     font-family: 'Outfit', sans-serif;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 300;
     color: #4a3a2a;
     margin: 0;

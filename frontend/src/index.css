@@ -37,13 +37,14 @@
 
 html {
     scroll-behavior: smooth;
+    font-size: 110%;
 }
 
 body {
     background-color: #000000;
     color: #ffffff;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 16px;
+    font-size: 17.6px;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
